@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SITER Certificate Automation</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+<header class="topbar">
+    <div class="container nav">
+        <a asp-controller="Home" asp-action="Index" class="brand">
+            <span class="mark">S</span>
+            SITER Certificate Automation
+        </a>
+        <span class="badge">MVP</span>
+    </div>
+</header>
+<main class="container page">
+    @RenderBody()
+</main>
+<footer class="container footer">
+    SITER Academy · Certificate Automation
+</footer>
+</body>
+</html>

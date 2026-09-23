@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Create Certificate Batch";
+}
+<section class="hero">
+    <span class="eyebrow">SITER Academy</span>
+    <h1>Generate 200+ certificates automatically.</h1>
+    <p>Upload your participant Excel file and optional certificate artwork.</p>
+</section>
+
+<div class="card">
+    <h2>Create a certificate batch</h2>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="error">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <div>@error.ErrorMessage</div>
+            }
+        </div>
+    }
+
+    <form asp-action="CreateBatch" method="post" enctype="multipart/form-data">
+        <label>Conference name</label>
+        <input name="conferenceName" value="SITER Academy Conference" required />
+
+        <label>Certificate date</label>
+        <input name="dateText" value="@DateTime.Now.ToString("dd MMMM yyyy")" />
+
+        <label>Participants Excel (.xlsx / .xlsm)</label>
+        <input name="excelFile" type="file" accept=".xlsx,.xlsm" required />
+        <small>Recommended columns: Name, Designation, Organization, Email.</small>
+
+        <label>Certificate background (optional)</label>
+        <input name="templateFile" type="file" accept=".png,.jpg,.jpeg" />
+
+        <button type="submit">Import participants</button>
+    </form>
+</div>

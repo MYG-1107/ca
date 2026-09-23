@@ -1,0 +1,48 @@
+@model CertificateBatch
+@{
+    ViewData["Title"] = "Review Batch";
+}
+<div class="heading">
+    <div>
+        <span class="eyebrow">Batch ready</span>
+        <h1>@Model.ConferenceName</h1>
+        <p>@Model.DateText · @Model.Participants.Count participant(s)</p>
+    </div>
+    <a asp-controller="Home" asp-action="Index" class="secondary">New batch</a>
+</div>
+
+<div class="card">
+    <div class="toolbar">
+        <h2>Participant preview</h2>
+        <form asp-action="GenerateAll" method="post">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button type="submit">Generate all certificates</button>
+        </form>
+    </div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Excel row</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Organization</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var participant in Model.Participants)
+            {
+                <tr>
+                    <td>@participant.RowNumber</td>
+                    <td><strong>@participant.Name</strong></td>
+                    <td>@participant.Designation</td>
+                    <td>@participant.Organization</td>
+                    <td>@participant.Email</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
